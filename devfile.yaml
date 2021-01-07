@@ -1,22 +1,18 @@
 schemaVersion: 2.0.0
-metadata:
-  generateName: devfile1-experiment-
 projects:
   - name: nodeinfo
-    git:
+    github:
       remotes:
-        type: github
         origin: https://github.com/jerolimov/docker
         sparseCheckoutDir: /nodeinfo/
 components:
-  - container:
-    - name: node
-      type: dockerimage
+  - name: node
+    container:
       image: node:12-alpine
       memoryLimit: 512Mi
       endpoints:
         - name: nodejs
-          port: 3000
+          targetPort: 3000
       mountSources: true
 commands:
   - id: build
