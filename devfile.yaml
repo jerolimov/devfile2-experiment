@@ -25,10 +25,12 @@ commands:
       component: node
       commandLine: npm run build
   - id: start dev
+    exec:
       label: Start development server
       component: node
       commandLine: npm run dev
   - id: start prod
+    exec:
       label: Start production server
       component: node
       commandLine: npm run build && npm start
