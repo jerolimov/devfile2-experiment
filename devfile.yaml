@@ -1,0 +1,34 @@
+schemaVersion: 2.0.0
+metadata:
+  generateName: devfile1-experiment-
+projects:
+  - name: nodeinfo
+    git:
+      remotes:
+        type: github
+        origin: https://github.com/jerolimov/docker
+        sparseCheckoutDir: /nodeinfo/
+components:
+  - container:
+    - name: node
+      type: dockerimage
+      image: node:12-alpine
+      memoryLimit: 512Mi
+      endpoints:
+        - name: nodejs
+          port: 3000
+      mountSources: true
+commands:
+  - id: build
+    exec:
+      label: build
+      component: node
+      commandLine: npm run build
+  - id: start dev
+      label: Start development server
+      component: node
+      commandLine: npm run dev
+  - id: start prod
+      label: Start production server
+      component: node
+      commandLine: npm run build && npm start
